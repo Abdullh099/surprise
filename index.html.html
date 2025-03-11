@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مفاجأة خاصة لكِ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Pacifico&display=swap');
+
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #ffe6e6;
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            padding: 15px 25px;
+            font-size: 20px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        button:hover {
+            background-color: #cc0000;
+            transform: scale(1.1);
+        }
+        #message {
+            font-size: 26px;
+            color: #d63384;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+        /* العنوان بفونت رايق */
+        #title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 32px;
+            color: #b30000;
+            margin-bottom: 20px;
+        }
+        /* اسم Salma بفونت جميل */
+        #salma {
+            font-family: 'Pacifico', cursive;
+            font-size: 40px;
+            color: #ff4d4d;
+            margin-top: 30px;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="title">I have a message I want to deliver to you...</h1>
+    <button onclick="showMessage()">اضغطي هنا</button>
+    <p id="message" class="hidden">❤انا كنت عايز اقولك ان أنا بحب أتكلم معاكي، بحب شكلك، بحب شكلك أوي على فكرة، أوي ..
+وبحب صوتك، عندك طريقة مش هعرف أشرحها، بحب طريقتك.
+ مهما هربتي موجودة جوايا، أنا بحبك اوى اوى علفكرة. ❤❤🌝</p>
+    
+    <!-- اسم Salma لوحده بفونت مميز -->
+    <p id="salma" class="hidden">Salma</p>
+
+    <script>
+        function showMessage() {
+            var msg = document.getElementById("message");
+            var salma = document.getElementById("salma");
+
+            msg.classList.remove("hidden");
+            salma.classList.remove("hidden");
+
+            setTimeout(() => { 
+                msg.style.opacity = 1;
+                salma.style.opacity = 1;
+            }, 100);
+        }
+    </script>
+
+</body>
+</html>
