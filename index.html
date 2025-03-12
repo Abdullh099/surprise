@@ -40,14 +40,12 @@
             opacity: 0;
             transition: opacity 2s ease-in-out;
         }
-        /* العنوان بفونت رايق */
         #title {
             font-family: 'Dancing Script', cursive;
             font-size: 32px;
             color: #b30000;
             margin-bottom: 20px;
         }
-        /* اسم Salma بفونت جميل */
         #salma {
             font-family: 'Pacifico', cursive;
             font-size: 40px;
@@ -56,33 +54,69 @@
             opacity: 0;
             transition: opacity 2s ease-in-out;
         }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 24px;
+            animation: floatUp 5s linear infinite;
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
-<body>
+<body onload="playMusic()">
 
     <h1 id="title">I have a message I want to deliver to you...</h1>
     <button onclick="showMessage()">اضغطي هنا</button>
-    <p id="message" class="hidden">❤انا كنت عايز اقولك ان أنا بحب أتكلم معاكي، بحب شكلك، بحب شكلك أوي على فكرة، أوي ..
-وبحب صوتك، عندك طريقة مش هعرف أشرحها، بحب طريقتك.
- مهما هربتي موجودة جوايا، أنا بحبك اوى اوى علفكرة. ❤❤🌝</p>
-    
-    <!-- اسم Salma لوحده بفونت مميز -->
+    <p id="message" class="hidden">❤ انا كنت عايز اقولك ان أنا بحب أتكلم معاكي، بحب شكلك، بحب شكلك أوي على فكرة، أوي ..<br> وبحب صوتك، عندك طريقة مش هعرف أشرحها، بحب طريقتك. <br> مهما هربتي موجودة جوايا، أنا بحبك اوى اوى علفكرة. ❤❤🌝</p>
     <p id="salma" class="hidden">Salma</p>
+    
+    <button id="shareButton">💌 مشاركة</button>
 
     <script>
         function showMessage() {
             var msg = document.getElementById("message");
             var salma = document.getElementById("salma");
-
             msg.classList.remove("hidden");
             salma.classList.remove("hidden");
-
             setTimeout(() => { 
                 msg.style.opacity = 1;
                 salma.style.opacity = 1;
             }, 100);
+            startHearts();
         }
-    </script>
 
+        function startHearts() {
+            setInterval(() => {
+                let heart = document.createElement("div");
+                heart.innerHTML = "❤";
+                heart.classList.add("heart");
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                document.body.appendChild(heart);
+                setTimeout(() => { heart.remove(); }, 5000);
+            }, 300);
+        }
+
+        document.getElementById("shareButton").addEventListener("click", () => {
+            if (navigator.share) {
+                navigator.share({
+                    title: "مفاجأة خاصة لكِ",
+                    text: "رسالة جميلة لكِ ❤",
+                    url: window.location.href
+                }).catch((error) => console.log("خطأ في المشاركة: ", error));
+            } else {
+                alert("المشاركة غير مدعومة في هذا المتصفح.");
+            }
+        });
+    </script>
 </body>
 </html>
